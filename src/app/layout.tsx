@@ -2,8 +2,6 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer } from "react-toastify";
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,8 +13,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 export const metadata: Metadata = {
-  title: "Boutique Luxe",
-  description: "Boutique Luxe - Moda premium femenina",
+  title: "Sabores Caseros",
+  description:
+    "Descubre recetas caseras, fáciles y deliciosas creadas para disfrutar cada momento en la cocina y compartir en familia.",
 };
 
 export default function RootLayout({
@@ -29,9 +28,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        {children} <ToastContainer position="top-right" />
-      </body>
+      <body className="min-h-full flex flex-col">{children}</body>
     </html>
   );
 }

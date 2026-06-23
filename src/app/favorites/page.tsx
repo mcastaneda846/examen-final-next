@@ -37,28 +37,24 @@ export default function FavoritesPage() {
       <Navbar />
 
       <section className="max-w-7xl mx-auto px-8 py-20">
-        <h1 className="text-5xl font-light mb-12">
-          Mis Recetas Favoritas
-        </h1>
+        <h1 className="text-5xl font-light mb-12">Mis Recetas Favoritas</h1>
 
         {loading ? (
           <p>Cargando...</p>
         ) : favorites.length === 0 ? (
-          <p className="text-zinc-500">
-            No tienes recetas favoritas aún.
-          </p>
+          <p className="text-zinc-500">No tienes recetas favoritas aún.</p>
         ) : (
           <div className="grid md:grid-cols-4 gap-8">
             {favorites.map((item) => (
-<RecipeCard
-  key={item.recipeId._id}
-  _id={item.recipeId?._id }
-  name={item.recipeId.name}
-  imageUrl={item.recipeId.imageUrl}
-  prepTime={item.recipeId.prepTime}
-  difficulty={item.recipeId.difficulty}
-  isFavorite={true}
-/>
+              <RecipeCard
+                key={item.recipeId._id}
+                _id={item.recipeId?._id}
+                name={item.recipeId.name}
+                imageUrl={item.recipeId.imageUrl}
+                prepTime={item.recipeId.prepTime}
+                difficulty={item.recipeId.difficulty}
+                isFavorite={true}
+              />
             ))}
           </div>
         )}

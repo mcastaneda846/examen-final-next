@@ -3,10 +3,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Heart } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { addFavorite, removeFavorite } from "@/lib/favorites";
-
-import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useCurrentUser } from "@/hooks/useCurrentUser";
 
 type RecipeCardProps = {
   _id: string;
@@ -27,12 +27,25 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   const [favorite, setFavorite] = useState(isFavorite);
 
+  const router = useRouter();
+  const { user, loading } = useCurrentUser();
+
   useEffect(() => {
     setFavorite(isFavorite);
   }, [isFavorite]);
 
   async function toggleFavorite() {
     try {
+      // Si no està logueado lo manda al login
+      if (!user) {
+        router.push("/login");
+        return;
+      }
+
+      // evitar clicks mientras carga user
+      if (loading) return;
+
+      // toggle favorito
       if (favorite) {
         await removeFavorite(_id);
         setFavorite(false);
@@ -44,8 +57,6 @@ export default function RecipeCard({
       console.error(error);
     }
   }
-
-  console.log("ID receta:", _id);
 
   return (
     <div className="group bg-white rounded-3xl overflow-hidden border border-zinc-200 hover:shadow-xl transition-all duration-300">
@@ -59,6 +70,7 @@ export default function RecipeCard({
 
         <button
           onClick={toggleFavorite}
+          disabled={loading}
           className="absolute top-4 right-4 bg-white rounded-full p-2 shadow"
         >
           <Heart

@@ -53,40 +53,40 @@ export default function Navbar() {
           </nav>
 
           {/* Right side */}
-<div className="flex items-center gap-5">
-  <Link href="/favorites">
-    <Heart size={22} />
-  </Link>
+          <div className="flex items-center gap-5">
+            <Link href="/favorites">
+              <Heart size={22} />
+            </Link>
 
-  {loading ? null : user ? (
-    <div ref={menuRef} className="relative flex items-center gap-2">
-      <button
-        onClick={() => setOpen(!open)}
-        className="text-sm font-medium text-black"
-      >
-        {user.name}
-      </button>
+            {loading ? null : user ? (
+              <div ref={menuRef} className="relative flex items-center gap-2">
+                <button
+                  onClick={() => setOpen(!open)}
+                  className="text-sm font-medium text-black"
+                >
+                  {user.name}
+                </button>
 
-      <User size={20} />
+                <User size={20} />
 
-      {open && (
-        <div className="absolute right-0 mt-10 w-32 bg-white border border-zinc-200 rounded-md shadow-md">
-          <button
-            onClick={handleLogout}
-            className="w-full text-left px-4 py-2 text-sm hover:bg-zinc-100"
-          >
-            Salir
-          </button>
-        </div>
-      )}
-    </div>
-  ) : (
-    // asegurar que el Link sea clickeable
-    <Link href="/login" className="flex items-center">
-      <User size={22} className="cursor-pointer" />
-    </Link>
-  )}
-</div>
+                {open && (
+                  <div className="absolute right-0 mt-10 w-32 bg-white border border-zinc-200 rounded-md shadow-md">
+                    <button
+                      onClick={handleLogout}
+                      className="w-full text-left px-4 py-2 text-sm hover:bg-zinc-100"
+                    >
+                      Salir
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              // asegurar que el Link sea clickeable
+              <Link href="/login" className="flex items-center">
+                <User size={22} className="cursor-pointer" />
+              </Link>
+            )}
+          </div>
         </div>
       </div>
     </header>

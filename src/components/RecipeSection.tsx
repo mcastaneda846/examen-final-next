@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProductCard from "./RecipeCard";
+import RecipeCard from "./RecipeCard";
 
 type Recipe = {
   _id: string;
@@ -12,13 +12,13 @@ type Recipe = {
 };
 
 export default function RecipeSection() {
-  const [products, setProducts] = useState<Recipe[]>([]);
+  const [recipes, setRecipes] = useState<Recipe[]>([]);
 
   useEffect(() => {
     fetch("/api/recipes")
       .then((res) => res.json())
       .then((data) => {
-        setProducts(data);
+        setRecipes(data);
       });
   }, []);
 
@@ -36,8 +36,8 @@ export default function RecipeSection() {
         </div>
 
         <div className="grid md:grid-cols-4 gap-8">
-          {products.map((recipe) => (
-            <ProductCard
+          {recipes.map((recipe) => (
+            <RecipeCard
               key={recipe._id}
               {...recipe}
             />
