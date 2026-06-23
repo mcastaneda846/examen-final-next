@@ -16,7 +16,6 @@ type Recipe = {
 };
 
 export default function RecipeDetail({ id }: { id: string }) {
-
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,9 +61,7 @@ export default function RecipeDetail({ id }: { id: string }) {
 
           {recipe.ingredients && (
             <div className="mt-10">
-              <h3 className="text-xl font-semibold mb-4">
-                Ingredientes
-              </h3>
+              <h3 className="text-xl font-semibold mb-4">Ingredientes</h3>
 
               <ul className="list-disc pl-5 space-y-2 text-zinc-700">
                 {recipe.ingredients.map((item, i) => (
@@ -76,9 +73,7 @@ export default function RecipeDetail({ id }: { id: string }) {
 
           {recipe.steps && (
             <div className="mt-10">
-              <h3 className="text-xl font-semibold mb-4">
-                Preparación
-              </h3>
+              <h3 className="text-xl font-semibold mb-4">Preparación</h3>
 
               <ol className="list-decimal pl-5 space-y-3 text-zinc-700">
                 {recipe.steps.map((step, i) => (
@@ -87,7 +82,6 @@ export default function RecipeDetail({ id }: { id: string }) {
               </ol>
             </div>
           )}
-
         </div>
       </div>
     </section>

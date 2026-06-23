@@ -37,10 +37,7 @@ export default function RecipeSection() {
 
         <div className="grid md:grid-cols-4 gap-8">
           {recipes.map((recipe) => (
-            <RecipeCard
-              key={recipe._id}
-              {...recipe}
-            />
+            <RecipeCard key={recipe._id} {...recipe} />
           ))}
         </div>
       </div>

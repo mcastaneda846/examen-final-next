@@ -4,12 +4,9 @@ import { verifyToken } from "@/utils/jwt";
 
 export async function getCurrentUser() {
   try {
-    const cookieStore =
-      await cookies();
+    const cookieStore = await cookies();
 
-    const token =
-      cookieStore.get("token")
-        ?.value;
+    const token = cookieStore.get("token")?.value;
 
     if (!token) {
       return null;

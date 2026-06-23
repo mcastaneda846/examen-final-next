@@ -151,8 +151,7 @@ export default function RegisterPage() {
       <div
         className="hidden lg:flex bg-cover bg-center relative order-1 lg:order-2"
         style={{
-          backgroundImage:
-            "https://images.unsplash.com/photo-1543353071-087092ec393a?q=80&w=1600",
+          backgroundImage: `url('/recipes/pexels-photo-541216.jpg')`,
         }}
       >
         <div className="absolute inset-0 bg-black/35" />

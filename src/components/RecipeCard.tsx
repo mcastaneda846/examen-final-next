@@ -75,9 +75,7 @@ export default function RecipeCard({
         >
           <Heart
             size={22}
-            className={
-              favorite ? "fill-red-500 text-red-500" : "text-zinc-700"
-            }
+            className={favorite ? "fill-red-500 text-red-500" : "text-zinc-700"}
           />
         </button>
 

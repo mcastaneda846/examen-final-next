@@ -10,8 +10,7 @@ const RecipeSchema = new mongoose.Schema(
     steps: [String],
     servings: Number,
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-export default mongoose.models.Recipe ||
-  mongoose.model("Recipe", RecipeSchema);
+export default mongoose.models.Recipe || mongoose.model("Recipe", RecipeSchema);

@@ -8,11 +8,7 @@ export class UserService {
     return User.findOne({ email });
   }
 
-  static async create(data: {
-    name: string;
-    email: string;
-    password: string;
-  }) {
+  static async create(data: { name: string; email: string; password: string }) {
     await connectDB();
 
     return User.create(data);

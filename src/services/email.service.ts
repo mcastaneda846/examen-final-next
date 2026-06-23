@@ -6,17 +6,17 @@ export class EmailService {
     port: 465,
     secure: true,
     auth: {
-      user: process.env.MAIL_USER,   
+      user: process.env.MAIL_USER,
       pass: process.env.MAIL_PASS,
     },
   });
 
-static async sendWelcomeEmail(email: string, name: string) {
-  await this.transporter.sendMail({
-    from: `"Sabores Caseros" <${process.env.MAIL_USER}>`,
-    to: email,
-    subject: "¡Bienvenido a Sabores Caseros!",
-    html: `
+  static async sendWelcomeEmail(email: string, name: string) {
+    await this.transporter.sendMail({
+      from: `"Sabores Caseros" <${process.env.MAIL_USER}>`,
+      to: email,
+      subject: "¡Bienvenido a Sabores Caseros!",
+      html: `
       <div style="background:#f4f4f5;padding:40px 20px;font-family:Arial,Helvetica,sans-serif;">
         <div style="
           max-width:500px;
@@ -72,6 +72,6 @@ static async sendWelcomeEmail(email: string, name: string) {
         </div>
       </div>
     `,
-  });
-}
+    });
+  }
 }
