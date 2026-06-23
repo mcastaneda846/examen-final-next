@@ -8,21 +8,23 @@ import { addFavorite, removeFavorite } from "@/lib/favorites";
 
 import { useEffect } from "react";
 
-type ProductCardProps = {
+type RecipeCardProps = {
   _id: string;
   name: string;
-  price: number;
   imageUrl: string;
+  prepTime: number;
+  difficulty: string;
   isFavorite?: boolean;
 };
 
-export default function ProductCard({
+export default function RecipeCard({
   _id,
   name,
-  price,
   imageUrl,
+  prepTime,
+  difficulty,
   isFavorite = false,
-}: ProductCardProps) {
+}: RecipeCardProps) {
   const [favorite, setFavorite] = useState(isFavorite);
 
   useEffect(() => {
@@ -33,17 +35,17 @@ export default function ProductCard({
     try {
       if (favorite) {
         await removeFavorite(_id);
-
         setFavorite(false);
       } else {
         await addFavorite(_id);
-
         setFavorite(true);
       }
     } catch (error) {
       console.error(error);
     }
   }
+
+  console.log("ID receta:", _id);
 
   return (
     <div className="group bg-white rounded-3xl overflow-hidden border border-zinc-200 hover:shadow-xl transition-all duration-300">
@@ -61,21 +63,27 @@ export default function ProductCard({
         >
           <Heart
             size={22}
-            className={favorite ? "fill-red-500 text-red-500" : "text-zinc-700"}
+            className={
+              favorite ? "fill-red-500 text-red-500" : "text-zinc-700"
+            }
           />
         </button>
+
+        {/* Info overlay receta */}
+        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white p-4 text-sm flex justify-between">
+          <span>{prepTime} min</span>
+          <span>{difficulty}</span>
+        </div>
       </div>
 
       <div className="p-5">
         <h3 className="text-lg font-medium text-zinc-900">{name}</h3>
 
-        <p className="mt-2 text-xl font-semibold">${price.toLocaleString()}</p>
-
         <Link
-          href={`/products/${_id}`}
+          href={`/recipes/${_id}`}
           className="mt-4 inline-block text-sm uppercase tracking-wider text-zinc-700 hover:text-black"
         >
-          Ver detalle →
+          Ver receta →
         </Link>
       </div>
     </div>

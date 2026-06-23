@@ -1,20 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "./RecipeCard";
 
-type Product = {
+type Recipe = {
   _id: string;
   name: string;
-  price: number;
   imageUrl: string;
+  prepTime: number;
+  difficulty: string;
 };
 
-export default function ProductSection() {
-  const [products, setProducts] = useState<Product[]>([]);
+export default function RecipeSection() {
+  const [products, setProducts] = useState<Recipe[]>([]);
 
   useEffect(() => {
-    fetch("/api/products")
+    fetch("/api/recipes")
       .then((res) => res.json())
       .then((data) => {
         setProducts(data);
@@ -25,20 +26,20 @@ export default function ProductSection() {
     <section className="py-20">
       <div className="max-w-7xl mx-auto px-8">
         <div className="mb-12 text-center">
-          <span className="uppercase tracking-[0.3em] text-sm text-[#8B5E83]">
-            Boutique Luxe
+          <span className="uppercase tracking-[0.3em] text-sm text-[#C46B3D]">
+            Sabores Caseros
           </span>
 
           <h2 className="mt-3 text-5xl font-light">
-            Destacados de la Semana
+            Recetas destacadas de la semana
           </h2>
         </div>
 
         <div className="grid md:grid-cols-4 gap-8">
-          {products.map((product) => (
+          {products.map((recipe) => (
             <ProductCard
-              key={product._id}
-              {...product}
+              key={recipe._id}
+              {...recipe}
             />
           ))}
         </div>

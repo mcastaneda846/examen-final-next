@@ -7,24 +7,17 @@ import { useRouter } from "next/navigation";
 export default function RegisterPage() {
   const router = useRouter();
 
-  const [name, setName] =
-    useState("");
+  const [name, setName] = useState("");
 
-  const [email, setEmail] =
-    useState("");
+  const [email, setEmail] = useState("");
 
-  const [password, setPassword] =
-    useState("");
+  const [password, setPassword] = useState("");
 
-  const [loading, setLoading] =
-    useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [error, setError] =
-    useState("");
+  const [error, setError] = useState("");
 
-  async function handleSubmit(
-    e: React.FormEvent
-  ) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
     if (loading) return;
@@ -33,30 +26,22 @@ export default function RegisterPage() {
       setLoading(true);
       setError("");
 
-      const res = await fetch(
-        "/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type":
-              "application/json",
-          },
-          body: JSON.stringify({
-            name,
-            email,
-            password,
-          }),
-        }
-      );
+      const res = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
+      });
 
-      const data =
-        await res.json();
+      const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(
-          data.error ||
-            "Error al registrarse"
-        );
+        throw new Error(data.error || "Error al registrarse");
       }
 
       router.push("/login");
@@ -73,19 +58,15 @@ export default function RegisterPage() {
       <div className="flex items-center justify-center px-8 py-16 order-2 lg:order-1">
         <div className="w-full max-w-md">
           <div className="mb-10">
-            <h2 className="text-4xl font-light text-black">
-              Crear Cuenta
-            </h2>
+            <h2 className="text-4xl font-light text-black">Crear Cuenta</h2>
 
             <p className="mt-3 text-zinc-600">
-Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y explora nuevos sabores cada día.
+              Regístrate y descubre miles de recetas deliciosas, comparte tus
+              creaciones y explora nuevos sabores cada día.
             </p>
           </div>
 
-          <form
-            onSubmit={handleSubmit}
-            className="space-y-5"
-          >
+          <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="block mb-2 text-sm font-medium text-zinc-700">
                 Nombre completo
@@ -95,11 +76,7 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
                 type="text"
                 disabled={loading}
                 value={name}
-                onChange={(e) =>
-                  setName(
-                    e.target.value
-                  )
-                }
+                onChange={(e) => setName(e.target.value)}
                 className="w-full rounded-xl border border-zinc-300 px-4 py-3 text-black outline-none focus:border-black"
                 placeholder="Maribel Castañeda"
               />
@@ -114,11 +91,7 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
                 type="email"
                 disabled={loading}
                 value={email}
-                onChange={(e) =>
-                  setEmail(
-                    e.target.value
-                  )
-                }
+                onChange={(e) => setEmail(e.target.value)}
                 className="w-full rounded-xl border border-zinc-300 px-4 py-3 text-black outline-none focus:border-black"
                 placeholder="correo@ejemplo.com"
               />
@@ -133,11 +106,7 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
                 type="password"
                 disabled={loading}
                 value={password}
-                onChange={(e) =>
-                  setPassword(
-                    e.target.value
-                  )
-                }
+                onChange={(e) => setPassword(e.target.value)}
                 className="w-full rounded-xl border border-zinc-300 px-4 py-3 text-black outline-none focus:border-black"
                 placeholder="********"
               />
@@ -145,9 +114,7 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
 
             {error && (
               <div className="rounded-xl border border-red-200 bg-red-50 p-3">
-                <p className="text-sm text-red-600">
-                  {error}
-                </p>
+                <p className="text-sm text-red-600">{error}</p>
               </div>
             )}
 
@@ -163,16 +130,12 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
                 }
               `}
             >
-              {loading
-                ? "Creando cuenta..."
-                : "Crear cuenta"}
+              {loading ? "Creando cuenta..." : "Crear cuenta"}
             </button>
           </form>
 
           <div className="mt-10 border-t border-zinc-200 pt-8 text-center">
-            <p className="text-zinc-600">
-              ¿Ya tienes una cuenta?
-            </p>
+            <p className="text-zinc-600">¿Ya tienes una cuenta?</p>
 
             <Link
               href="/login"
@@ -189,7 +152,8 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
         className="hidden lg:flex bg-cover bg-center relative order-1 lg:order-2"
         style={{
           backgroundImage:
-"https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1600"}}
+            "https://images.unsplash.com/photo-1543353071-087092ec393a?q=80&w=1600",
+        }}
       >
         <div className="absolute inset-0 bg-black/35" />
 
@@ -199,7 +163,8 @@ Regístrate y descubre miles de recetas deliciosas, comparte tus creaciones y ex
           </h1>
 
           <p className="mt-6 max-w-md text-lg text-white/90">
-Cocina recetas increíbles con ingredientes frescos, descubre nuevas ideas cada día y comparte tu pasión por la cocina.
+            Cocina recetas increíbles con ingredientes frescos, descubre nuevas
+            ideas cada día y comparte tu pasión por la cocina.
           </p>
         </div>
       </div>

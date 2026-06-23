@@ -9,7 +9,7 @@ export async function getFavorites() {
 }
 
 export async function addFavorite(
-  productId: string
+  recipeId: string
 ) {
   return fetch("/api/favorites", {
     method: "POST",
@@ -18,13 +18,13 @@ export async function addFavorite(
         "application/json",
     },
     body: JSON.stringify({
-      productId,
+      recipeId,
     }),
   });
 }
 
 export async function removeFavorite(
-  productId: string
+  recipeId: string
 ) {
   return fetch("/api/favorites", {
     method: "DELETE",
@@ -33,7 +33,7 @@ export async function removeFavorite(
         "application/json",
     },
     body: JSON.stringify({
-      productId,
+      recipeId,
     }),
   });
 }
